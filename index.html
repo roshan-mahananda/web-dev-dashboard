@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Projects Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 p-8 font-sans">
+    <div class="max-w-7xl mx-auto">
+        <header class="flex justify-between items-center mb-10 border-b pb-4">
+            <h1 class="text-3xl font-bold text-gray-900">Lab Projects Dashboard</h1>
+            <button onclick="addProject()" class="bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition font-medium">
+                + Add Project
+            </button>
+        </header>
+        
+        <main id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        </main>
+    </div>
+
+    <script>
+        const projects = [
+            { 
+                name: "Exp 1: Resume", 
+                desc: "Create a Resume.", 
+                link: "https://roshan-mahananda.github.io/DemoResume/" 
+            },
+            { 
+                name: "Exp 2: Online Shopping", 
+                desc: "Create online shopping webpage with Product Details.", 
+                link: "https://roshan-mahananda.github.io/ShoppingKart/" 
+            },
+            { 
+                name: "Exp 3: Simple Quiz", 
+                desc: "Create simple Quiz with 20 Questions.", 
+                link: "https://roshan-mahananda.github.io/quizWeb/" 
+            },
+            { 
+                name: "Exp 4: Scientific Calculator", 
+                desc: "Create a scientific calculator.", 
+                link: "#" 
+            },
+            { 
+                name: "Exp 5: Employee Details Form", 
+                desc: "Employee Details Form with Database.", 
+                link: "https://roshan-mahananda.github.io/firebase_editable_form/" 
+            },
+            { 
+                name: "Exp 6: Department Webpage", 
+                desc: "Simple Department webpage using a database.", 
+                link: "#" 
+            },
+            { 
+                name: "Exp 7: Company Webpage", 
+                desc: "Create a Company webpage with Front-end and Backend.", 
+                link: "https://roshan-mahananda.github.io/employee-admin-company/" 
+            },
+            { 
+                name: "Exp 8: Contact Management", 
+                desc: "Create a contact management application.", 
+                link: "https://roshan-mahananda.github.io/contact-management/" 
+            }
+        ];
+
+        const grid = document.getElementById('project-grid');
+
+        function renderProjects() {
+            grid.innerHTML = '';
+            projects.forEach((proj, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col justify-between hover:shadow-md transition-shadow";
+                
+                card.innerHTML = `
+                    <div class="mb-6">
+                        <h2 class="text-lg font-bold text-gray-900 mb-2">${proj.name}</h2>
+                        <p class="text-sm text-gray-600 line-clamp-3">${proj.desc}</p>
+                    </div>
+                    <a href="${proj.link}" target="_blank" class="block w-full text-center bg-gray-800 text-white py-2 rounded-md hover:bg-gray-900 transition-colors text-sm font-medium">
+                        Open Project
+                    </a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function addProject() {
+            const name = prompt("Enter project name (e.g., Exp 9: New Tool):");
+            if (!name) return;
+            
+            const desc = prompt("Enter short description:");
+            if (!desc) return;
+            
+            const link = prompt("Enter deployed link URL:", "https://");
+            if (!link) return;
+
+            projects.push({ name, desc, link });
+            renderProjects();
+        }
+
+        renderProjects();
+    </script>
+</body>
+</html>
